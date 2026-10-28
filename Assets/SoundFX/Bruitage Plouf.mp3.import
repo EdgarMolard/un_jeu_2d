@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://brgjwhtslf05w"
+path="res://.godot/imported/Bruitage Plouf.mp3-c5af39747bb51d8f8c95429033cf132c.mp3str"
+
+[deps]
+
+source_file="res://Assets/SoundFX/Bruitage Plouf.mp3"
+dest_files=["res://.godot/imported/Bruitage Plouf.mp3-c5af39747bb51d8f8c95429033cf132c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

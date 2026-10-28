@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://df62xcnrfxhml"]
+
+[ext_resource type="Script" uid="uid://cubr427hhwbeu" path="res://Scènes/menu.gd" id="1_d3shj"]
+[ext_resource type="Texture2D" uid="uid://clvxdruo66xsi" path="res://Assets/image/background_menu.jpg" id="2_p860i"]
+[ext_resource type="FontFile" uid="uid://5gqya5q8ckch" path="res://Assets/font/Minecraft.ttf" id="3_tspi7"]
+[ext_resource type="AudioStream" uid="uid://bpihl3wadfdlp" path="res://Assets/SoundFX/feu.mp3" id="4_nbp8j"]
+
+[node name="Control" type="Control" unique_id=1253359030]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_d3shj")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2063593969]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_p860i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1051825017]
+layout_mode = 0
+offset_left = 391.0
+offset_top = 49.0
+offset_right = 1505.0
+offset_bottom = 454.0
+alignment = 1
+
+[node name="Titre" type="Label" parent="VBoxContainer" unique_id=1823719408]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.09803922, 0.54901963, 0.54901963, 1)
+theme_override_fonts/font = ExtResource("3_tspi7")
+theme_override_font_sizes/font_size = 48
+text = "La Ke²tte de Liam"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Lancer" type="Button" parent="VBoxContainer" unique_id=840764327]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.30683747, 0.5552754, 0.17877036, 1)
+theme_override_fonts/font = ExtResource("3_tspi7")
+theme_override_font_sizes/font_size = 32
+text = "SE GOON"
+icon_alignment = 1
+
+[node name="Quitter" type="Button" parent="VBoxContainer" unique_id=946795549]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.79091245, 0.29229766, 0.24705735, 1)
+theme_override_fonts/font = ExtResource("3_tspi7")
+theme_override_font_sizes/font_size = 32
+text = "Faire le NNN"
+icon_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2115308421]
+stream = ExtResource("4_nbp8j")
+autoplay = true
+parameters/looping = true
