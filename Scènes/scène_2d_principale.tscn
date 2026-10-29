@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://5gqya5q8ckch" path="res://Assets/font/Minecraft.ttf" id="8_lyrw8"]
 [ext_resource type="Script" uid="uid://b7mlr27pgtonp" path="res://Scènes/zone_lit.gd" id="8_x3qmh"]
 [ext_resource type="AudioStream" uid="uid://cogkjbuy58sqp" path="res://Assets/SoundFX/Minecraft anvil sound.mp3" id="9_qscui"]
+[ext_resource type="Script" uid="uid://dq73aay8xjtmo" path="res://Scènes/quetes.gd" id="10_quetes"]
 [ext_resource type="Texture2D" uid="uid://d08vmniwwkaha" path="res://Assets/Pixel Crawler - Free Pack/Environment/Structures/Buildings/Walls.png" id="12_pc8c7"]
 [ext_resource type="AudioStream" uid="uid://3pg724blw5fa" path="res://Assets/SoundFX/taverne.mp3" id="12_viauf"]
 [ext_resource type="Texture2D" uid="uid://g08s32aj0hrn" path="res://Assets/Pixel Crawler - Free Pack/Environment/Tilesets/Wall_Tiles.png" id="43_mrqe4"]
@@ -3067,6 +3068,22 @@ size = Vector2(26, 43)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_txs7l"]
 size = Vector2(39, 63)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_quest_panel"]
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
+bg_color = Color(0.0784314, 0.0627451, 0.105882, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.839216, 0.698039, 0.352941, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lyrw8"]
 content_margin_left = 10.0
 content_margin_top = 10.0
@@ -3150,6 +3167,47 @@ stream = ExtResource("9_qscui")
 position = Vector2(57, 64)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=530553519]
+
+[node name="Quetes" type="PanelContainer" parent="CanvasLayer" unique_id=647113933]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -340.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = 190.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_quest_panel")
+script = ExtResource("10_quetes")
+
+[node name="Liste" type="VBoxContainer" parent="CanvasLayer/Quetes" unique_id=1218871716]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Titre" type="Label" parent="CanvasLayer/Quetes/Liste" unique_id=1508550492]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.984314, 0.847059, 0.396078, 1)
+theme_override_fonts/font = ExtResource("8_lyrw8")
+theme_override_font_sizes/font_size = 22
+text = "QUÊTES"
+horizontal_alignment = 1
+
+[node name="Separateur" type="HSeparator" parent="CanvasLayer/Quetes/Liste" unique_id=468304222]
+layout_mode = 2
+
+[node name="Bain" type="Label" parent="CanvasLayer/Quetes/Liste" unique_id=2099222835]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.941176, 0.941176, 0.941176, 1)
+theme_override_fonts/font = ExtResource("8_lyrw8")
+theme_override_font_sizes/font_size = 14
+text = "□ Prendre un bain"
+
+[node name="Baton" type="Label" parent="CanvasLayer/Quetes/Liste" unique_id=623079832]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.941176, 0.941176, 0.941176, 1)
+theme_override_fonts/font = ExtResource("8_lyrw8")
+theme_override_font_sizes/font_size = 14
+text = "□ Détruire le bâton magique"
+autowrap_mode = 2
 
 [node name="Bulle" type="PanelContainer" parent="CanvasLayer" unique_id=956150324]
 offset_left = 36.0

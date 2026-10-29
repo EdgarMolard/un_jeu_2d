@@ -27,6 +27,9 @@ func _process(_delta: float) -> void:
 			a_interagi = true
 			player.parler("Je vais bien chier dans mon bain\n- s'exclama Glandalf")
 			bruit_caca.play()
+			var gestionnaire_quetes := get_tree().get_first_node_in_group("gestionnaire_quetes") as Quetes
+			if gestionnaire_quetes != null:
+				gestionnaire_quetes.valider_bain()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
