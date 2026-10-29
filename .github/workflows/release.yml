@@ -1,0 +1,74 @@
+
+name: Build Godot Windows Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    name: Export Windows
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download Godot
+        run: |
+          GODOT_VERSION="4.7.2"
+          BASE_URL="https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}-stable"
+
+          wget -q "${BASE_URL}/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip" -O godot.zip
+          unzip -q godot.zip -d godot-bin
+          mv godot-bin/Godot_v${GODOT_VERSION}-stable_linux.x86_64 godot
+          chmod +x godot
+
+          ./godot --headless --version
+
+      - name: Install export templates
+        run: |
+          GODOT_VERSION="4.7.2"
+          BASE_URL="https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}-stable"
+
+          wget -q "${BASE_URL}/Godot_v${GODOT_VERSION}-stable_export_templates.tpz" -O templates.tpz
+
+          mkdir -p "$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
+          unzip -q templates.tpz -d templates
+
+          cp templates/templates/* \
+            "$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable/"
+
+      - name: Import project resources
+        run: |
+          ./godot --headless --editor --path . --import
+          ./godot --headless --editor --path . --quit
+
+      - name: Export Windows game
+        run: |
+          mkdir -p build
+
+          ./godot --headless --path . \
+            --export-release "Windows Desktop" build/MonJeu.exe
+
+          test -s build/MonJeu.exe
+
+      - name: Package game
+        run: |
+          cd build
+          zip -r ../MonJeu-Windows.zip .
+
+          test -s ../MonJeu-Windows.zip
+
+      - name: Upload to GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release upload \
+            "${{ github.event.release.tag_name }}" \
+            MonJeu-Windows.zip \
+            --clobber
